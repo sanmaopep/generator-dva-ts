@@ -2,19 +2,32 @@ var path = require("path");
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+let postcssOptions = {
+    config: {
+        path: path.resolve(__dirname, "./webpack/postcss.config.js")
+    }
+}
+
 module.exports = {
     devtool: "cheap-module-eval-source-map",
     entry: [
         "webpack-hot-middleware/client",
-        "./src/index.js" // Your appʼs entry point
+        "./src/index.tsx" // Your appʼs entry point
     ],
     output: {
         path: path.resolve(__dirname, "./build"),
         filename: "js/bundle.js",
         publicPath: "/static/"
     },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', "jsx"],
+    },
     module: {
         rules: [
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader'
+            },
             {
                 test: /\.(ttf|eot|woff)$/,
                 use: [{
@@ -38,18 +51,6 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(js|jsx)$/,
-                use: [{
-                    loader: "babel-loader"
-                }],
-                exclude: [
-                    path.resolve(__dirname, "./node_modules")
-                ],
-                include: [
-                    path.resolve(__dirname, "./src")
-                ]
-            },
-            {
                 test: /\.scss$/,
                 use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                     fallback: "style-loader",
@@ -59,11 +60,10 @@ module.exports = {
                             modules: true,
                             localIdentName: "[name]_[local]_[hash:4]"
                         }
-                    },
-                    {
-                        loader: "postcss-loader"
-                    },
-                    {
+                    }, {
+                        loader: "postcss-loader",
+                        options: postcssOptions
+                    }, {
                         loader: "sass-loader"
                     }]
                 }))
@@ -76,7 +76,8 @@ module.exports = {
                         loader: "css-loader"
                     },
                     {
-                        loader: "postcss-loader"
+                        loader: "postcss-loader",
+                        options: postcssOptions
                     },
                     {
                         loader: "less-loader"
@@ -87,7 +88,12 @@ module.exports = {
                 test: /\.css$/,
                 use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: ["css-loader", "postcss-loader"]
+                    use: [{
+                        loader: "css-loader"
+                    }, {
+                        loader: "postcss-loader",
+                        options: postcssOptions
+                    }]
                 }))
             }
         ]
@@ -99,9 +105,6 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
-        new webpack.BannerPlugin({
-            banner: "Created by Eigen :)"
-        }),
         new ExtractTextPlugin({
             filename: "css/styles.css"
         })

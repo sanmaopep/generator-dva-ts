@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var express = require('express');
 var proxy = require('http-proxy-middleware');
 
-var config = require('./webpack.config.dev');
+var config = require('./webpack/webpack.config.dev');
 var opn = require('opn');
 
 var app = express();
@@ -22,12 +22,11 @@ app.use(function (req, res, next) {
 });
 
 const proxyConfig = {
-    'target': 'https://alpha-labs.aidigger.com',
-    // 'target': 'http://192.168.3.66:5000',
-    // 'pathRewrite': { '^/dual/api': '' },
+    'target': 'http://test.com',
+    'pathRewrite': { '^/api': '' },
     'headers': {
-        cookie: 'code=563757; skey="ZoGsc5OX0Tf1obykrm1WflJMIP8=";',
-        host: 'alpha-labs.aidigger.com'
+        cookie: 'test',
+        host: 'test.com'
     }
 }
 

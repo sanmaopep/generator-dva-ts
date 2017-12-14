@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "module": "es2015"
+    },
+    "include": [
+        "src/*"
+    ],
+    "typeRoots": [
+        "node_modules/@types"
+    ]
+}

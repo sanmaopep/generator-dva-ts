@@ -1,4 +1,5 @@
 import dva from 'dva';
+import * as React from 'react'
 import { createBrowserHistory } from 'history';
 import homepage from './models/homepage';
 import router from './router';

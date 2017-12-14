@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+const { Component } = React;
 import { connect } from 'dva';
 
 import './HomePage.css';
 import styles from './HomePage.scss';
 import yeomanLogo from '../../assets/yeoman-logo.png';
 
-class HomePage extends Component {
+class HomePage extends Component<{}, {}> {
     constructor(props) {
         super(props);
     }
 
     render() {
         return <div className="container">
-            <img src={yeomanLogo} className={styles.logo}/>
+            <img src={yeomanLogo} className={styles.logo} />
         </div>
     }
 }

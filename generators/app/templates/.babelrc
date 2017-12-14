@@ -1,13 +1,16 @@
 {
     "presets": [
         "env",
-        "react",
-        "stage-0"
+        "react"
     ],
     "plugins": [
-        "transform-runtime",
-        "transform-flow-strip-types",
-        "transform-decorators-legacy"
+        "transform-runtime", [
+            "import",
+            {
+                "libraryName": "antd",
+                "style": true
+            }
+        ]
     ],
     "env": {
         "development": {

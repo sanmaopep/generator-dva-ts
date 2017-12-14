@@ -134,9 +134,6 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'runtime',
         }),
-        new webpack.BannerPlugin({
-            banner: "Created by Eigen :)"
-        }),
         new ExtractTextPlugin({
             filename: "css/styles.[chunkhash].css"
         })

@@ -4,6 +4,11 @@ import {
     HomePage
 } from './routes';
 
+
+const a = (
+    <div></div>
+)
+
 function RouterConfig({ history }) {
     return (
         <div>
