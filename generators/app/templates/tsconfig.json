@@ -3,12 +3,17 @@
         "target": "es5",
         "jsx": "react",
         "allowSyntheticDefaultImports": true,
-        "module": "es2015"
+        "module": "es2015",
+        "sourceMap": true
     },
-    "include": [
-        "src/*"
-    ],
-    "typeRoots": [
-        "node_modules/@types"
+    // "include": [
+    //     "src/*"
+    // ],
+    "exclude": [
+        "node_modules",
+        "bower_components",
+        "jspm_packages",
+        "tmp",
+        "temp"
     ]
 }

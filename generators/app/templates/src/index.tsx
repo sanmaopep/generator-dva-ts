@@ -1,4 +1,5 @@
 import dva from 'dva';
+import { Button } from 'antd'
 import * as React from 'react'
 import { createBrowserHistory } from 'history';
 import homepage from './models/homepage';

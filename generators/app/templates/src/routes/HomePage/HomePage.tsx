@@ -3,8 +3,8 @@ const { Component } = React;
 import { connect } from 'dva';
 
 import './HomePage.css';
-import styles from './HomePage.scss';
-import yeomanLogo from '../../assets/yeoman-logo.png';
+var styles = require('./HomePage.scss');
+var yeomanLogo = require('../../assets/yeoman-logo.png');
 
 class HomePage extends Component<{}, {}> {
     constructor(props) {

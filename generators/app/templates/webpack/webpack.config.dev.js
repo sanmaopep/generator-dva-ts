@@ -1,6 +1,7 @@
 var path = require("path");
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const tsImportPluginFactory = require('ts-import-plugin');
 
 let postcssOptions = {
     config: {
@@ -26,7 +27,21 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: 'ts-loader'
+                loader: 'ts-loader',
+                options: {
+                    transpileOnly: true,
+                    getCustomTransformers: () => ({
+                        before: [tsImportPluginFactory({
+                            libraryName: 'antd',
+                            libraryDirectory: 'lib',
+                            style: true
+                        })]
+                    }),
+                    compilerOptions: {
+                        module: 'es2015'
+                    }
+                },
+                exclude: /node_modules/
             },
             {
                 test: /\.(ttf|eot|woff)$/,

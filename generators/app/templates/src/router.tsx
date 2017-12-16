@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, Switch } from 'dva/router';
 import {
     HomePage
-} from './routes';
+} from './routes/index';
 
 
 const a = (
