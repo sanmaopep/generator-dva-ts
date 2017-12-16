@@ -11,6 +11,11 @@
     "dva",
     "typescript"
   ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanmaopep/generator-dva-ts"
+  },
   "author": "maoyiwei",
   "dependencies": {
     "@types/history": "^4.6.2",

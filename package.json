@@ -1,7 +1,7 @@
 {
-  "name": "generator-eigen",
-  "version": "0.0.3",
-  "description": "react&dva template",
+  "name": "generator-dva-ts",
+  "version": "0.0.1",
+  "description": "dva typescript template",
   "main": "index.js",
   "scripts": {
     "test": ""
@@ -9,11 +9,15 @@
   "keywords": [
     "yeoman-generator"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanmaopep/generator-dva-ts"
+  },
   "files": [
     "generators"
   ],
-  "author": "kaijun",
-  "license": "ISC",
+  "author": "maoyiwei",
+  "license": "MIT",
   "dependencies": {
     "mkdirp": "^0.5.1",
     "yeoman-generator": "^2.0.1"
