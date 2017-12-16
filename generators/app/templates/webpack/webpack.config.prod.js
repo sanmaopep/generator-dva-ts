@@ -3,23 +3,51 @@ var path = require("path");
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const tsImportPluginFactory = require('ts-import-plugin');
+
+let postcssOptions = {
+    config: {
+        path: path.resolve(__dirname, "./webpack/postcss.config.js")
+    }
+}
 
 module.exports = {
     devtool: "source-map",
     entry: {
-        app: "./src/index.js", // Your appʼs entry point
+        app: "./src/index.tsx", // Your appʼs entry point
         vendor: ['react', 'react-dom']
     },
     resolve: {
         extensions: ['.js', '.jsx'],
     },
     output: {
-        path: path.join(__dirname, "build/static"),
+        path: path.join(__dirname, "../build/static"),
         filename: "js/[name].[chunkhash].js",
         publicPath: "/static/"
     },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', "jsx"],
+    },
     module: {
         rules: [
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                options: {
+                    transpileOnly: true,
+                    getCustomTransformers: () => ({
+                        before: [tsImportPluginFactory({
+                            libraryName: 'antd',
+                            libraryDirectory: 'lib',
+                            style: true
+                        })]
+                    }),
+                    compilerOptions: {
+                        module: 'es2015'
+                    }
+                },
+                exclude: /node_modules/
+            },
             {
                 test: /\.(ttf|eot|woff)$/,
                 use: [{
@@ -43,18 +71,6 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(js|jsx)$/,
-                use: [{
-                    loader: "babel-loader"
-                }],
-                include: [
-                    path.resolve(__dirname, "./src")
-                ],
-                exclude: [
-                    path.resolve(__dirname, "./node_modules")
-                ]
-            },
-            {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
@@ -67,7 +83,8 @@ module.exports = {
                         }
                     },
                     {
-                        loader: "postcss-loader"
+                        loader: "postcss-loader",
+                        options: postcssOptions
                     },
                     {
                         loader: "sass-loader"
@@ -86,7 +103,8 @@ module.exports = {
                         }
                     },
                     {
-                        loader: "postcss-loader"
+                        loader: "postcss-loader",
+                        options: postcssOptions
                     },
                     {
                         loader: "less-loader"
@@ -103,7 +121,8 @@ module.exports = {
                             minimize: true
                         }
                     }, {
-                        loader: "postcss-loader"
+                        loader: "postcss-loader",
+                        options: postcssOptions
                     },]
                 })
             }
