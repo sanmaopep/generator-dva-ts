@@ -1,6 +1,6 @@
 {
   "name": "generator-dva-ts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "dva typescript template",
   "main": "index.js",
   "scripts": {
