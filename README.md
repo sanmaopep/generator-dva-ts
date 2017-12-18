@@ -2,8 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/generator-dva-ts.svg?style=flat)](https://www.npmjs.com/package/generator-dva-ts)
 
-
-generate typescript environment for dva
+> generate typescript environment for dva + antd
 
 ## Installation
 

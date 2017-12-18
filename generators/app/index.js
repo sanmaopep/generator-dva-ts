@@ -10,6 +10,10 @@ module.exports = class extends Generator {
             this.templatePath('./**/*'),
             this.destinationPath('./')
         );
+        this.fs.copy(
+            this.templatePath('./**/.*'),
+            this.destinationPath('./')
+        );
     }
-    
+
 }
